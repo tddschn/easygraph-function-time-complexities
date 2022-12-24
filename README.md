@@ -12,6 +12,16 @@
   - [clustering coefficient](#clustering-coefficient)
     - [`clustering` - `O(V^3)` (source)](#clustering---ov3-source)
     - [`average_clustering` - `O(V^3)` (source)](#average_clustering---ov3-source)
+  - [Shortest Path](#shortest-path)
+    - [`Dijkstra` - `O(V^2 + E log V)` - (source)](#dijkstra---ov2--e-log-v---source)
+    - [`Floyd` - `O(V^3)` - (source)](#floyd---ov3---source)
+    - [`Prim` - `O(E log V)` - (source)](#prim---oe-log-v---source)
+    - [`Kruskal` - `O(E log E)` - (source)](#kruskal---oe-log-e---source)
+  - [Minimum Spanning Tree](#minimum-spanning-tree)
+    - [`minimum_spanning_tree` - (source)](#minimum_spanning_tree---source)
+  - [biconnected](#biconnected)
+    - [`is_biconnected` - `O(V + E)` - (source)](#is_biconnected---ov--e---source)
+    - [`biconnected_components` - `O(V + E)` - (source)](#biconnected_components---ov--e---source)
 
 <!-- ## Prompt
 
@@ -101,7 +111,7 @@ If the graph is represented as an adjacency matrix, the time complexity for coun
 
 Overall, the time complexity of the clustering function would be O(V^3) if the graph is represented as an adjacency matrix, and O(E^3) if the graph is represented as an adjacency list.
 
-It's worth noting that these time complexities are for the worst case scenario, and the actual time complexity may be lower in practice, depending on the specific input graph and the implementation of the algorithm.
+
 
 ### `average_clustering` - `O(V^3)` ([source](https://github.com/easy-graph/Easy-Graph/blob/19d2b0597efe18b405b13213294ce3a70202dc0d/easygraph/functions/basic/cluster.py#L248))
 
@@ -111,4 +121,46 @@ If the graph is represented as an adjacency matrix, the time complexity of the c
 
 If the graph is represented as an adjacency list, the time complexity of the clustering function is O(E^3), and the time complexity of computing the average is O(V). Therefore, the overall time complexity of the average_clustering function would be O(E^3 + V), which is O(E^3).
 
-It's worth noting that these time complexities are for the worst case scenario, and the actual time complexity may be lower in practice, depending on the specific input graph and the implementation of the algorithm.
+
+
+## Shortest Path
+
+### `Dijkstra` - `O(V^2 + E log V)` - ([source](https://github.com/easy-graph/Easy-Graph/blob/19d2b0597efe18b405b13213294ce3a70202dc0d/easygraph/functions/path/path.py#L16))
+
+The time complexity of the Dijkstra function with respect to the number of nodes (V) and number of edges (E) of the input graph G is O(V^2 + E log V). This is because the function uses a priority queue (implemented as a heap) to store the distances of the nodes from the source node, and the time complexity of inserting and extracting elements from a heap is O(log V). The function also iterates over all the edges once, so the time complexity is also O(E).
+
+### `Floyd` - `O(V^3)` - ([source](https://github.com/easy-graph/Easy-Graph/blob/19d2b0597efe18b405b13213294ce3a70202dc0d/easygraph/functions/path/path.py#L43))
+
+The time complexity of the Floyd function with respect to the number of nodes (V) and number of edges (E) of the input graph G is O(V^3). This is because the function uses a nested loop structure to iterate over all pairs of nodes, and the time complexity of this type of loop is O(V^2).
+
+### `Prim` - `O(E log V)` - ([source](https://github.com/easy-graph/Easy-Graph/blob/19d2b0597efe18b405b13213294ce3a70202dc0d/easygraph/functions/path/path.py#L88))
+
+The time complexity of the Prim function with respect to the number of nodes (V) and number of edges (E) of the input graph G is O(E log V). This is because the function uses a priority queue (implemented as a heap) to store the distances of the nodes from the source node, and the time complexity of inserting and extracting elements from a heap is O(log V). The function also iterates over all the edges once, so the time complexity is also O(E).
+
+### `Kruskal` - `O(E log E)` - ([source](https://github.com/easy-graph/Easy-Graph/blob/19d2b0597efe18b405b13213294ce3a70202dc0d/easygraph/functions/path/path.py#L141))
+
+The time complexity of the Kruskal function with respect to the number of nodes (V) and number of edges (E) of the input graph G is O(E log E). This is because the function sorts the edges by weight, and the time complexity of sorting is O(E log E). The function also iterates over all the edges once, so the time complexity is also O(E).
+
+## Minimum Spanning Tree
+
+### `minimum_spanning_tree` - ([source](https://github.com/easy-graph/Easy-Graph/blob/19d2b0597efe18b405b13213294ce3a70202dc0d/easygraph/functions/path/mst.py#L389))
+
+The time complexity of the minimum_spanning_tree function depends on the algorithm used to find the minimum spanning tree. The function can use one of three algorithms: Kruskal's algorithm, Prim's algorithm, or Borůvka's algorithm.
+
+Kruskal's algorithm has a time complexity of O(E log E) with respect to the number of edges (E) in the input graph.
+
+Prim's algorithm has a time complexity of O(E log V) with respect to the number of edges (E) and the number of nodes (V) in the input graph.
+
+Borůvka's algorithm has a time complexity of O(E log V) with respect to the number of edges (E) and the number of nodes (V) in the input graph.
+
+Therefore, the overall time complexity of the minimum_spanning_tree function is O(E log E) for Kruskal's algorithm, O(E log V) for Prim's and Borůvka's algorithms, with respect to the number of edges (E) and the number of nodes (V) in the input graph.
+
+## biconnected
+
+### `is_biconnected` - `O(V + E)` - ([source](https://github.com/easy-graph/Easy-Graph/blob/19d2b0597efe18b405b13213294ce3a70202dc0d/easygraph/functions/components/biconnected.py#L16))
+
+The time complexity of the is_biconnected function is O(V+E), where V is the number of nodes and E is the number of edges in the input graph. This is because the function performs a single depth-first search (DFS) on the graph, which has a time complexity of O(V+E).
+
+### `biconnected_components` - `O(V + E)` - ([source](https://github.com/easy-graph/Easy-Graph/blob/19d2b0597efe18b405b13213294ce3a70202dc0d/easygraph/functions/components/biconnected.py#L44))
+
+The time complexity of the biconnected_components function is also O(V+E), because it performs a single DFS on the graph and returns a list of the biconnected components, which is a linear operation with respect to the number of components.
